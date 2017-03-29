@@ -1,0 +1,24 @@
+{
+  "name": "mait-result-scraping",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dhruv-97/mait-result-scraping.git"
+  },
+  "author": "Dhruv Mongia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dhruv-97/mait-result-scraping/issues"
+  },
+  "homepage": "https://github.com/dhruv-97/mait-result-scraping#readme",
+  "dependencies": {
+    "cheerio": "^0.22.0",
+    "form-data": "^2.1.2",
+    "request": "^2.81.0"
+  }
+}
