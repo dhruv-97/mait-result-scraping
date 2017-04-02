@@ -58,9 +58,9 @@ function dataCookieToString(dataCookie) {
     }
     return t;
 } 
-
 var form = new FormData();
 var marks =[];
+var semText='';
 	form.append('Roll_No', '60714803115');
 	form.submit('http://ipuresult.com/index.php', function(err, res) {
 	  // res – response object (http.IncomingMessage)  // 
@@ -89,6 +89,9 @@ var marks =[];
 				credits:'' 
 			};
 			var i=0;
+			var sem =$('table tr:nth-child(1)>td');
+			semText=sem.text();
+		
 			$('.tftable td').each(function(){
 				var content = $(this);
 				var contentText = content.text();
@@ -124,10 +127,10 @@ var marks =[];
 
 		});
 		
-		
 
 	    });
 	});
+setTimeout(function(){ console.log(semText); }, 2000);
 
 app.get('/results', function (req, res) {
 

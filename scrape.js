@@ -32,6 +32,8 @@ function dataCookieToString(dataCookie) {
 }
 var form = new FormData();
 var marks =[];
+var infoText='';
+var semText='';
 	form.append('Roll_No', '60714803115');
 	form.submit('http://ipuresult.com/index.php', function(err, res) {
 	  // res – response object (http.IncomingMessage)  // 
@@ -59,6 +61,11 @@ var marks =[];
 				total:'',
 				credits:'' 
 			};
+			var info =$('table tr:nth-child(1)>td');
+			infoText=info.text();
+			var sem =$('table>tr:nth-child(0)>th>div');
+			semText=sem.text();
+			console.log(semText);
 			var i=0;
 			$('.tftable td').each(function(){
 				var content = $(this);
@@ -125,6 +132,13 @@ app.get('/notices', function (req, res) {
 
 	setTimeout(function(){ res.json(notices) }, 1000);
 })
+app.get('/info', function (req, res) {
 
+	setTimeout(function(){ res.send(infoText) }, 1000);
+})
+app.get('/sem', function (req, res) {
+
+	setTimeout(function(){ res.send(semText) }, 1000);
+})
 app.listen(port);
 console.log('server running on '+port);
