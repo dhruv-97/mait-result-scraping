@@ -36,18 +36,19 @@ request(url, function(err,resp,body){
 	if(err)
 		throw err;
 	var $ = cheerio.load(body);
-	var urls=[];
-	var info=[];
+	var notices=[];
 	$('.table-box td a').each(function(){
 		var content = $(this);
 		var contentText = content.text();
 		if(contentText.search('B. Tech')!=-1 || contentText.search("B.Tech")!=-1){
-			info.push(contentText);
-			var url = $(this).attr('href');
-			urls.push(url);
+			var urlText = $(this).attr('href');
+			notices.push({
+				notice: contentText,
+				url: urlText
+			})
 		}
 	});
-	console.log(info);
+	console.log(notices);
 })
 
 
