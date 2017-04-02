@@ -131,7 +131,7 @@ var marks =[];
 
 app.get('/results', function (req, res) {
 
-	setTimeout(function(){ res.send(marks) }, 1000);
+	setTimeout(function(){ res.json(marks) }, 1000);
 })
 
 
