@@ -124,6 +124,38 @@ request('http://ipu.ac.in/exam_notices.php', function(err,resp,body){
 	});
 	
 })
+var faculty=[];
+request('http://cse.mait.ac.in/index.php/people/faculty', function(err,resp,body){
+	if(err)
+		throw err;
+	var $ = cheerio.load(body);
+	var teacher = {
+		designation: '',
+		qualification:'',
+		exp:''
+	}
+	$('.article-content table tr td table tr td:nth-child(2) p').each(function()   {
+                 var info = $(this);
+                 
+                 var infoText = info.text();
+                 if(infoText.indexOf('Designation') > -1)
+                 	teacher.designation=infoText.substring(25,infoText.length);
+                 	
+                 else if(infoText.indexOf('Qualification') > -1)
+                 	teacher.qualification=infoText.substring(26,infoText.length);
+                 else if(infoText.indexOf('Total') > -1){
+                 	teacher.exp=infoText.substring(39,infoText.length);
+                 	faculty.push(teacher);
+                 	teacher = {
+						designation: '',
+						qualification:'',
+						exp:''
+					};
+                 }
+      
+             });
+	
+})
 app.get('/results', function (req, res) {
 
 	setTimeout(function(){ res.json(marks) }, 1000);
@@ -139,6 +171,10 @@ app.get('/info', function (req, res) {
 app.get('/sem', function (req, res) {
 
 	setTimeout(function(){ res.send(semText) }, 1000);
+})
+app.get('/faculty', function (req, res) {
+
+	setTimeout(function(){ res.json(faculty) }, 1000);
 })
 app.listen(port);
 console.log('server running on '+port);
